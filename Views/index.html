@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Timestamp</title>
+    </head>
+    <body>
+        <h1>Timestamp Microservice</h1>
+        <p>Enter a date (e.g., December 15, 2022, or 1640995200000) in the URL to get the timestamp:</p>
+        <input type="text" id="dateInput" placeholder="Enter date">
+        <button onclick="getTimestamp()">Get Timestamp</button>
+        <div id="result"></div>
+      
+
+        <script>
+        const getTimestamp = () =>{
+        const date = document.getElementById('dateInput').value;
+         fetch(`/api/${date}`)
+        .then(response => response.json())
+        .then(data => {
+          const resultDiv = document.getElementById('result');
+          resultDiv.innerHTML = JSON.stringify(data, null, 2);
+        })
+        .catch(error => console.error('Error:', error));
+            }
+            
+        </script>
+    </body>
+</html>
