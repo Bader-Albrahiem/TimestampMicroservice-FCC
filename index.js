@@ -10,6 +10,14 @@ app.get("/api/:date", (req, res) => {
   const date = req.params.date;
   let result = {};
 
+  if (!date) {
+    const currentDate = new Date();
+    res.json({
+      unix: currentDate.getTime(),
+      utc: currentDate.toUTCString(),
+    });
+    return;
+  }
   if (!isNaN(date)) {
     const unixTimestamp = parseInt(date);
     result = {
